@@ -1,0 +1,31 @@
+{
+  "name": "watanuki",
+  "ignoredBuiltDependencies": [
+    "fsevents"
+  ],
+  "dependencies": {
+    "@nuxt/eslint": "^1.9.0",
+    "@nuxt/fonts": "^0.11.4",
+    "@nuxt/icon": "^2.0.0",
+    "@nuxt/image": "^1.2.0",
+    "@nuxtjs/tailwindcss": "6.14.0",
+    "@pinia/nuxt": "^0.11.2",
+    "nuxt": "^4.1.3",
+    "nuxt-swiper": "^2.0.1",
+    "pinia": "^3.0.3",
+    "sharp": "^0.32.6",
+    "vue": "^3.5.22",
+    "vue-router": "^4.5.1"
+  },
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "type": "module"
+}
