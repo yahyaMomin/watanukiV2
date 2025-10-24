@@ -4,13 +4,23 @@ definePageMeta({
 })
 useHead({
   title: 'watanuki | Watch Free Anime, Online Anime Streaming - watanuki',
-
   meta: [
-    { name: 'description', content: 'watanuki to is a free no ads anime site to watch free anime. Online anime streaming at watanuki with DUB, SUB in HD watanuki.shop, Anix, 9anime, Zoro, Animixplay.' },
-    { name: 'keywords', content: 'watanuki, watanuki to, aniwatch, zorox, zoro anime, zoro to, zoroxtv, watch anime online free, free watch anime, anime online to watch' },
+    { name: 'description', content: 'watanuki is a free, no-ads anime site to watch anime online in HD with DUB and SUB. Stream anime from watanuki.shop, hianime, Anix, 9anime, Zoro, Animixplay alternatives.' },
+    { name: 'keywords', content: 'watanuki, watanuki to, watch anime online, free anime streaming, zoro anime, aniwatch, 9anime, anime dub sub hd, hianime' },
+    { name: 'robots', content: 'index, follow' },
+    { name: 'author', content: 'watanuki' },
+    { property: 'og:title', content: 'watanuki | Watch Free Anime Online in HD' },
+    { property: 'og:description', content: 'Watch free anime online with DUB & SUB in HD. No ads, fast streaming.' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: 'https://watanuki.shop' },
+    { property: 'og:image', content: 'https://watanuki.shop/og-image.jpg' },
+    { name: 'twitter:card', content: 'watanuki is a free, no-ads anime site to watch anime online in HD with DUB and SUB. Stream anime from watanuki.shop, hianime, Anix, 9anime, Zoro, Animixplay alternatives.' },
+    { name: 'twitter:title', content: 'watanuki | Free Anime Streaming' },
+    { name: 'twitter:description', content: 'Stream anime free online, HD quality, no ads.' },
+    { name: 'twitter:image', content: 'https://watanuki.shop/og-image.jpg' },
   ],
-
 })
+
 const navLinks = [
   { name: 'Home', path: '/home' },
   { name: 'Movies', path: '/animes/movie' },
@@ -91,7 +101,7 @@ const inputVal = ref('')
         <!-- <Icon name="uil:github" /> -->
         </button>
       </form>
-      <div class="top-searches text-base mt-5">
+      <!-- <div class="top-searches text-base mt-5">
         <span class="font-bold">TOP SEARCHES : </span>
         <span
           v-for="term in topSearches"
@@ -102,7 +112,7 @@ const inputVal = ref('')
             {{ term }}
           </nuxt-link>
         </span>
-      </div>
+      </div> -->
       <div class="banner flex items-center justify-center ">
         <NuxtImg
           class="h-auto w-96"

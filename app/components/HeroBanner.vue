@@ -11,15 +11,6 @@ useSwiper(containerRef, {
   autoplay: {
     delay: 2000,
   },
-  navigation: {
-    enabled: true,
-  },
-  pagination: {
-    enabled: true,
-    clickable: true,
-
-  },
-
 })
 </script>
 
@@ -158,24 +149,6 @@ useSwiper(containerRef, {
   overflow: hidden;
 }
 
-swiper-container::part(button-next),
-swiper-container::part(button-prev) {
-  color: #ccc;
-}
-
-swiper-container::part(bullet){
-  opacity: 1;
-  background: #ccc;
-  height: 12px;
-  width: 12px;
-  gap: 7px;
-
-}
-swiper-container::part(bullet-active) {
-  background: #ffc107;
-  height: 12px;
-  width: 12px;
-}
 .item {
   display: flex;
   align-items: center;

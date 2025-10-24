@@ -5,6 +5,6 @@
   <NuxtImg
     format="webp"
     densities="x1 x2"
-    placeholder="/images/loader.gif"
+    class="bg-slate-400"
   />
 </template>

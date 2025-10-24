@@ -5,7 +5,7 @@ const sidebar = useSidebarStore()
 </script>
 
 <template>
-  <div class="app">
+  <div class="app bg-background">
     <Sidebar />
     <div :class="`${sidebar.isSideBarOpen ? 'bg-active' : ''}`">
       <div

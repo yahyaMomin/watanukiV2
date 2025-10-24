@@ -2,12 +2,55 @@
 const { data, error, status } = await useFetch('/api/home')
 
 if (error.value) navigateTo('/404')
+
+useHead({
+  title: 'watanuki | Watch Free Anime, Online Anime Streaming - watanuki',
+  meta: [
+    { name: 'description', content: 'watanuki is a free, no-ads anime site to watch anime online in HD with DUB and SUB. Stream anime from watanuki.shop, hianime, Anix, 9anime, Zoro, Animixplay alternatives.' },
+    { name: 'keywords', content: 'watanuki, watanuki to, watch anime online, free anime streaming, zoro anime, aniwatch, 9anime, anime dub sub hd, hianime' },
+    { name: 'robots', content: 'index, follow' },
+    { name: 'author', content: 'watanuki' },
+    { property: 'og:title', content: 'watanuki | Watch Free Anime Online in HD' },
+    { property: 'og:description', content: 'Watch free anime online with DUB & SUB in HD. No ads, fast streaming.' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: 'https://watanuki.shop' },
+    { property: 'og:image', content: 'https://watanuki.shop/og-image.jpg' },
+    { name: 'twitter:card', content: 'watanuki is a free, no-ads anime site to watch anime online in HD with DUB and SUB. Stream anime from watanuki.shop, hianime, Anix, 9anime, Zoro, Animixplay alternatives.' },
+    { name: 'twitter:title', content: 'watanuki | Free Anime Streaming' },
+    { name: 'twitter:description', content: 'Stream anime free online, HD quality, no ads.' },
+    { name: 'twitter:image', content: 'https://watanuki.shop/og-image.jpg' },
+  ],
+})
 </script>
 
 <template>
   <main class="bg-background">
     <HeroBanner :spotlight="data?.data.spotlight" />
-    <Trending :trending="data?.data.trending" />
+    <div class="max-w-[1800px] mx-auto px-2">
+      <Trending :trending="data?.data.trending" />
+      <div class="grid mx-2 grid-cols-12 gap-4 my-5">
+        <AnimeCard
+          :data="data?.data.topAiring"
+          title="Top Airing"
+          path="top-airing"
+        />
+        <AnimeCard
+          :data="data?.data.mostPopular"
+          title="Most Popular"
+          path="most-popular"
+        />
+        <AnimeCard
+          :data="data?.data.mostFavorite"
+          title="Most Favorite"
+          path="most-favorite"
+        />
+        <AnimeCard
+          :data="data?.data.latestCompleted"
+          title="Completed"
+          path="completed"
+        />
+      </div>
+    </div>
   </main>
 </template>
 

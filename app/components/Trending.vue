@@ -9,7 +9,7 @@ const slides = ref(props.trending)
 useSwiper(containerRef, {
   loop: true,
   autoplay: {
-    delay: 2000,
+    delay: 4000,
   },
   breakpoints: {
     0: { slidesPerView: 3 },
@@ -23,9 +23,8 @@ useSwiper(containerRef, {
   <ClientOnly>
     <div
       id="trending"
-      class="my-5"
     >
-      <h1 class="heading text-2xl tracking-wide my-2 ml-4">
+      <h1 class="heading tracking-wide my-2 ml-4">
         Trending
       </h1>
       <swiper-container
