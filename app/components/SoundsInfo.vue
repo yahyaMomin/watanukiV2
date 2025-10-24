@@ -22,7 +22,6 @@ defineProps({
     </p>
 
     <p class="item bg-purple px-1 text-[12px] text-black">
-      <FaMicrophone />
       <Icon name="fa7-solid:microphone" />
       <span class="text-sm font-bold">{{ episodes.dub }}</span>
     </p>
@@ -32,6 +31,3 @@ defineProps({
     </p>
   </div>
 </template>
-
-<style scoped>
-</style>

@@ -1,5 +1,13 @@
 <script setup>
-const { data, error, status } = await useFetch('/api/home')
+const isLoading = ref(false)
+
+const { data, error, status } = await useFetch('/api/home', {
+  onResponse() {
+    isLoading.value = false
+  }, onRequestError() {
+    isLoading.value = false
+  },
+})
 
 if (error.value) navigateTo('/404')
 
@@ -25,30 +33,59 @@ useHead({
 
 <template>
   <main class="bg-background">
-    <HeroBanner :spotlight="data?.data.spotlight" />
-    <div class="max-w-[1800px] mx-auto px-2">
-      <Trending :trending="data?.data.trending" />
-      <div class="grid mx-2 grid-cols-12 gap-4 my-5">
-        <AnimeCard
-          :data="data?.data.topAiring"
-          title="Top Airing"
-          path="top-airing"
-        />
-        <AnimeCard
-          :data="data?.data.mostPopular"
-          title="Most Popular"
-          path="most-popular"
-        />
-        <AnimeCard
-          :data="data?.data.mostFavorite"
-          title="Most Favorite"
-          path="most-favorite"
-        />
-        <AnimeCard
-          :data="data?.data.latestCompleted"
-          title="Completed"
-          path="completed"
-        />
+    <div
+      v-if="isLoading"
+      class="flex items-center justify-center h-screen"
+    >
+      <div class="loader">
+        loading....
+      </div>
+    </div>
+    <div v-else>
+      <HeroBanner :spotlight="data?.data.spotlight" />
+      <div class="max-w-[1800px] mx-auto px-2">
+        <Trending :trending="data?.data.trending" />
+        <div class="grid mx-2 grid-cols-12 gap-4 my-5">
+          <AnimeCard
+            :data="data?.data.topAiring"
+            title="Top Airing"
+            path="top-airing"
+          />
+          <AnimeCard
+            :data="data?.data.mostPopular"
+            title="Most Popular"
+            path="most-popular"
+          />
+          <AnimeCard
+            :data="data?.data.mostFavorite"
+            title="Most Favorite"
+            path="most-favorite"
+          />
+          <AnimeCard
+            :data="data?.data.latestCompleted"
+            title="Completed"
+            path="completed"
+          />
+        </div>
+        <div className="row grid my-10 gap-2 justify-center grid-cols-12 sm:mx-2">
+          <div className="left col-span-12 xl:col-span-9">
+            <AnimeList
+              title="Latest Episode"
+              path="recently-updated"
+              :data="data?.data.latestEpisode"
+            />
+            <AnimeList
+              title="New Added"
+              path="recently-added"
+              :data="data?.data.newAdded"
+            />
+            <AnimeList
+              title="Top Upcoming"
+              path="top-upcoming"
+              :data="data?.data.topUpcoming"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </main>
