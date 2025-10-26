@@ -1,15 +1,9 @@
 <script setup>
-const isLoading = ref(false)
-
-const { data, error, status } = await useFetch('/api/home', {
-  onResponse() {
-    isLoading.value = false
-  }, onRequestError() {
-    isLoading.value = false
-  },
-})
+const { data, error } = await useFetch('/api/home')
 
 if (error.value) navigateTo('/404')
+const result = data?.value?.data
+const { spotlight, trending, topAiring, mostPopular, mostFavorite, latestCompleted, latestEpisode, newAdded, topUpcoming, top10 } = result
 
 useHead({
   title: 'watanuki | Watch Free Anime, Online Anime Streaming - watanuki',
@@ -33,60 +27,61 @@ useHead({
 
 <template>
   <main class="bg-background">
-    <div
-      v-if="isLoading"
-      class="flex items-center justify-center h-screen"
-    >
-      <div class="loader">
-        loading....
-      </div>
-    </div>
-    <div v-else>
-      <HeroBanner :spotlight="data?.data.spotlight" />
-      <div class="max-w-[1800px] mx-auto px-2">
-        <Trending :trending="data?.data.trending" />
-        <div class="grid mx-2 grid-cols-12 gap-4 my-5">
-          <AnimeCard
-            :data="data?.data.topAiring"
-            title="Top Airing"
-            path="top-airing"
+    <HeroBanner
+      :spotlight="spotlight"
+    />
+    <div class="max-w-[1800px] mx-auto px-2">
+      <Trending :trending="trending" />
+      <section class="grid grid-cols-12 gap-4 my-5">
+        <AnimeCard
+          :data="topAiring"
+          title="Top Airing"
+          path="top-airing"
+        />
+        <AnimeCard
+          :data="mostPopular"
+          title="Most Popular"
+          path="most-popular"
+        />
+        <AnimeCard
+          :data="mostFavorite"
+          title="Most Favorite"
+          path="most-favorite"
+        />
+        <AnimeCard
+          :data="latestCompleted"
+          title="Completed"
+          path="completed"
+        />
+      </section>
+      <section class="row grid gap-2 justify-center grid-cols-12">
+        <div class="left col-span-12 xl:col-span-9">
+          <AnimeList
+            title="Latest Episode"
+            path="recently-updated"
+            :data="latestEpisode"
           />
-          <AnimeCard
-            :data="data?.data.mostPopular"
-            title="Most Popular"
-            path="most-popular"
+          <AnimeList
+            title="New Added"
+            path="recently-added"
+            :data="newAdded"
           />
-          <AnimeCard
-            :data="data?.data.mostFavorite"
-            title="Most Favorite"
-            path="most-favorite"
-          />
-          <AnimeCard
-            :data="data?.data.latestCompleted"
-            title="Completed"
-            path="completed"
+          <AnimeList
+            title="Top Upcoming"
+            path="top-upcoming"
+            :data="topUpcoming"
           />
         </div>
-        <div className="row grid my-10 gap-2 justify-center grid-cols-12 sm:mx-2">
-          <div className="left col-span-12 xl:col-span-9">
-            <AnimeList
-              title="Latest Episode"
-              path="recently-updated"
-              :data="data?.data.latestEpisode"
-            />
-            <AnimeList
-              title="New Added"
-              path="recently-added"
-              :data="data?.data.newAdded"
-            />
-            <AnimeList
-              title="Top Upcoming"
-              path="top-upcoming"
-              :data="data?.data.topUpcoming"
-            />
-          </div>
+        <div class="right col-span-12 xl:col-span-3 space-y-4">
+            <h1 class="heading">
+              Genres
+            </h1>
+            <div class="sm:bg-lightbg bg-none rounded-sm px-2 py-1">
+              <Genres class="sm:w-1/3 px-2 rounded-sm py-1 mb-2 line-clamp-1 bg-lightbg sm:bg-transparent mx-1 sm:mx-0 text-center" />
+            </div>
+          <TopTen :data="top10" />
         </div>
-      </div>
+      </section>
     </div>
   </main>
 </template>

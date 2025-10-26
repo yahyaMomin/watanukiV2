@@ -1,6 +1,6 @@
 <script setup>
 const props = defineProps({
-  trending: Object,
+  trending: Array,
 })
 
 const containerRef = ref(null)
@@ -8,9 +8,6 @@ const slides = ref(props.trending)
 
 useSwiper(containerRef, {
   loop: true,
-  autoplay: {
-    delay: 4000,
-  },
   breakpoints: {
     0: { slidesPerView: 3 },
     800: { slidesPerView: 4 },
@@ -23,8 +20,9 @@ useSwiper(containerRef, {
   <ClientOnly>
     <div
       id="trending"
+      class="mt-5"
     >
-      <h1 class="heading tracking-wide my-2 ml-4">
+      <h1 class="heading">
         Trending
       </h1>
       <swiper-container
@@ -32,28 +30,29 @@ useSwiper(containerRef, {
         class="flex justify-center items-center"
       >
         <swiper-slide
-          v-for="(item, idx) in slides"
-          :key="idx"
+          v-for="item in slides"
+          :key="item.id"
           class="text-center"
         >
-          <div class="item flex flex-col items-center overflow-hidden px-1 md:px-2 justify-between">
+          <div class="item flex-col px-1">
             <NuxtLink
               :to="`/anime/${item.id}`"
-              class="poster w-full h-0 pb-[150%] bg-lightbg relative overflow-hidden"
+              class="w-full h-0 pb-[150%] bg-lightbg relative overflow-hidden"
             >
               <Image
                 class="absolute inset-0 w-full h-full object-cover"
-                loading="lazy"
                 :src="item.poster"
                 :alt="item.title"
               />
-              <div class="rank p-1 text-sm md:text-base md:p-2  absolute top-0 bg-white text-center text-black">
-                0{{ item.rank }}
+              <div class="rank py-1 px-2 text-sm md:text-base absolute top-0 bg-white text-center text-black">
+                <span v-show="item.rank < 10">0</span>
+                <span>{{ item.rank }}</span>
               </div>
+
             </NuxtLink>
             <h2
               :title="item.title"
-              class="title cursor-default text-sm font-semibold text-center truncate w-full"
+              class="title cursor-pointer text-sm text-center truncate w-full mt-2"
             >
               {{ item.title }}
             </h2>
@@ -63,6 +62,3 @@ useSwiper(containerRef, {
     </div>
   </ClientOnly>
 </template>
-
-<style>
-</style>

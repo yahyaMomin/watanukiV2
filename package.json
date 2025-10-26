@@ -4,6 +4,7 @@
     "fsevents"
   ],
   "dependencies": {
+    "@iconify-json/fa7-solid": "^1.2.2",
     "@nuxt/eslint": "^1.9.0",
     "@nuxt/fonts": "^0.11.4",
     "@nuxt/icon": "^2.0.0",
@@ -27,5 +28,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
-  "type": "module"
+  "type": "module",
+  "pnpm": {
+    "onlyBuiltDependencies": ["sharp"]
+  }
 }

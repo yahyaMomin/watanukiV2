@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     'nuxt-swiper',
   ],
   devtools: { enabled: true },
-  css: ['~/assets/css/main.css', '~/assets/css/variables.css'],
+  css: ['~/assets/css/variables.css'],
   runtimeConfig: {
     serverUrl: 'public',
   },
@@ -26,6 +26,6 @@ export default defineNuxtConfig({
   },
   image: {
     format: ['webp'],
-    domains: ['https://cdn.noitatnemucod.net'],
+    domains: ['https://cdn.noitatnemucod.net', 'https://cdn.myanimelist.net'],
   },
 })

@@ -47,7 +47,7 @@ const inputVal = ref('')
 </script>
 
 <template>
-  <section class="min-h-screen px-2 md:px-10 max-w-screen-xl mx-auto main">
+  <main class="min-h-dvh px-2 md:px-10 max-w-screen-xl mx-auto main">
     <header class="relative">
       <nav class="pt-4 hidden sm:block">
         <ul class="flex justify-center gap-10">
@@ -62,7 +62,7 @@ const inputVal = ref('')
       </nav>
       <nav class="block relative pt-4 sm:hidden">
         <button
-          class="flex justify-center items-center gap-2  pl-10"
+          class="flex justify-center items-center gap-2  pl-3"
           @click="showNav = !showNav"
         >
           <Icon
@@ -88,7 +88,7 @@ const inputVal = ref('')
         <MyLogo />
       </div>
     </header>
-    <div class="bg">
+    <section class="bg">
       <form class="search flex justify-center items-center">
         <input
           v-model="inputVal"
@@ -98,7 +98,6 @@ const inputVal = ref('')
         >
         <button class="bg-primary text-black h-full py-2 px-3 rounded-r-md">
           <Icon name="fa7-solid:magnifying-glass" />
-        <!-- <Icon name="uil:github" /> -->
         </button>
       </form>
       <!-- <div class="top-searches text-base mt-5">
@@ -121,15 +120,15 @@ const inputVal = ref('')
         />
       </div>
       <div class="explore">
-        <nuxt-link to="/home">
+        <NuxtLink to="/home">
           <button class="bg-primary text-black w-full mt-4 py-2 rounded-md flex justify-center items-center gap-2">
             <span>Explore Animes</span>
-            <Icon name="ooui:arrow-next-ltr" />
+            <Icon name="fa7-solid:arrow-right" />
           </button>
-        </nuxt-link>
+        </NuxtLink>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 </template>
 
 <style scoped>

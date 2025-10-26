@@ -9,99 +9,99 @@ const slides = ref(props.spotlight)
 useSwiper(containerRef, {
   loop: true,
   autoplay: {
-    delay: 2000,
+    disableOnInteraction: true,
+    delay: 4000,
   },
 })
 </script>
 
 <template>
   <ClientOnly>
-    <swiper-container
-      ref="containerRef"
-      :init="false"
-    >
-      <swiper-slide
-
-        v-for="(item, idx) in slides"
-        :key="idx"
-        style=""
-        class="relative overflow-hidden bg-backGround h-[40vh] sm:h-[40vh] md:h-[50vh] xl:h-[calc(100vh-300px)]"
+    <section>
+      <swiper-container
+        ref="containerRef"
+        :init="false"
       >
-        <div class="content w-full h-full">
+        <swiper-slide
+          v-for="item in slides"
+          :key="item.id"
+          class="relative overflow-hidden bg-backGround h-[40vh] md:h-[50vh] xl:h-[calc(100vh-300px)]"
+        >
           <div
             class="opacity-layer absolute left-0 md:left-[15%] xl:left-[30%] top-0 right-0 bottom-0 overflow-hidden"
           >
             <Image
               class="h-full w-full object-cover object-center"
-              loading="lazy"
               :alt="item.title"
               :src="item.poster"
-              format="webp"
             />
           </div>
-
           <div
             class="z-10 ml-2 md:ml-12 min-w-32 md:max-w-2xl absolute bottom-10"
           >
-            <div class="text-primary mb-2">
+            <h2 class="text-primary mb-2">
               #{{ item.rank }} Spotlight
-            </div>
+            </h2>
 
-            <div
+            <h1
               class="title text-lg md:text-2xl xl:text-5xl font-bold mb-6 line-clamp-2"
               :title="item.title"
             >
               {{ item.title }}
-            </div>
+            </h1>
 
-            <div class="text-base text-white mb-3 gap-5 hidden md:flex">
-              <div class="item flex items-center gap-1">
+            <ul class="text-base text-white mb-3 gap-5 hidden md:flex">
+              <li class="item">
                 <Icon name="fa7-solid:circle-play" />
                 <span>{{ item.type }}</span>
-              </div>
-              <div class="item flex items-center gap-1">
+              </li>
+              <li class="item">
                 <Icon name="fa7-solid:clock" />
                 <span>{{ item.duration }}</span>
-              </div>
-              <div class="item flex items-center gap-1">
+              </li>
+              <li class="item">
                 <Icon name="fa7-solid:calendar-day" />
                 <span>{{ item.aired }}</span>
-              </div>
-              <div
-                class="item bg-primary text-black text-sm font-bold px-2 rounded-sm"
+              </li>
+              <li
+                class="item bg-primary text-black text-sm font-bold px-2 rounded-lg"
               >
                 <span>{{ item.quality }}</span>
-              </div>
-              <div class="item">
+              </li>
+              <li class="item">
                 <SoundsInfo :episodes="item.episodes" />
-              </div>
-            </div>
+              </li>
+            </ul>
 
-            <div class="synopsis">
+            <p class="synopsis">
               {{ item.synopsis }}
-            </div>
+            </p>
 
-            <div class="desi-buttons z-50 text-sm md:text-base mt-5 flex gap-2">
+            <div class="z-50 text-sm md:text-base mt-5 flex gap-2">
               <NuxtLink
                 :to="`/watch/${item.id}`"
-                class="bg-primary rounded-3xl px-4 py-1 text-black flex justify-center items-center gap-2"
               >
-                <Icon name="fa7-solid:circle-play" />
-                <span>Watch Now</span>
+                <Button class="bg-primary rounded-3xl px-4 py-1 text-black flex justify-center items-center gap-2">
+                  <Icon name="fa7-solid:circle-play" />
+                  <span>Watch Now</span>
+                </Button>
               </NuxtLink>
 
               <NuxtLink
                 :to="`/anime/${item.id}`"
-                class="bg-btnbg rounded-3xl px-4 py-1 flex justify-center items-center gap-2"
               >
-                <span>Detail</span>
-                <Icon name="fa7-solid:angle-right" />
+                <button
+                  class="bg-btnbg rounded-3xl px-4 py-1 flex justify-center items-center gap-2"
+                >
+                  <span>Detail</span>
+                  <Icon name="fa7-solid:angle-right" />
+                </button>
               </NuxtLink>
             </div>
           </div>
-        </div>
-      </swiper-slide>
-    </swiper-container>
+        </swiper-slide>
+      </swiper-container>
+    </section>
   </ClientOnly>
 </template>
 
@@ -147,12 +147,6 @@ useSwiper(containerRef, {
   line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-}
-
-.item {
-  display: flex;
-  align-items: center;
-  gap: 3px;
 }
 .title {
   display: -webkit-box;
