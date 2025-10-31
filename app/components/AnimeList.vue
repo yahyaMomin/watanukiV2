@@ -7,11 +7,14 @@ defineProps({
 </script>
 
 <template>
-  <div class="flex heading justify-between items-center">
-    <h1>
+  <div
+    class="flex heading justify-between items-center"
+  >
+    <h1 v-if="title">
       {{ title }}
     </h1>
     <NuxtLink
+      v-if="path"
       :to="`/animes/${path}`"
       class="flex items-center gap-1 text-sm text-neutral-400 hover:text-primary mr-4"
     >

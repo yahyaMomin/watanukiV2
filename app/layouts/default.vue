@@ -16,6 +16,7 @@ const sidebar = useSidebarStore()
       <div class="main-app pt-16">
         <slot />
       </div>
+      <Footer />
     </div>
   </div>
 </template>

@@ -8,11 +8,12 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
     'nuxt-swiper',
+    '@vueuse/nuxt',
   ],
   devtools: { enabled: true },
   css: ['~/assets/css/variables.css'],
   runtimeConfig: {
-    serverUrl: 'public',
+    serverUrl: 'http://localhost:3030/api/v1',
   },
   compatibilityDate: '2025-07-15',
   eslint: {
