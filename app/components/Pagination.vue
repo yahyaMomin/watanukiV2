@@ -19,6 +19,11 @@ const getPage = (page, total) => {
 
 const pageNav = computed(() => getPage(props.currentPage, props.totalPages))
 
+const showFirst = computed(() => props.currentPage > 1)
+const showPrev = computed(() => props.currentPage > 1)
+const showNext = computed(() => props.totalPages - props.currentPage > 1)
+const showEnd = computed(() => props.totalPages - props.currentPage > 1)
+
 const liClass = 'bg-lightbg hover:text-primary rounded-[50%] size-11 flex justify-center items-center cursor-pointer'
 </script>
 
@@ -26,7 +31,7 @@ const liClass = 'bg-lightbg hover:text-primary rounded-[50%] size-11 flex justif
   <nav>
     <ul class="flex justify-center items-center gap-2  my-5">
       <li
-        v-if="currentPage > 3"
+        v-if="showFirst"
         :class="liClass"
         title="page 1"
         @click="emit('change', 1)"
@@ -34,7 +39,7 @@ const liClass = 'bg-lightbg hover:text-primary rounded-[50%] size-11 flex justif
         <Icon name="fa7-solid:angle-double-left" />
       </li>
       <li
-        v-if="currentPage > 2 && totalPages > 5"
+        v-if="showPrev"
         :class="liClass"
         :title="`page ${currentPage - 1}`"
         @click="emit('change', currentPage - 1)"
@@ -53,7 +58,7 @@ const liClass = 'bg-lightbg hover:text-primary rounded-[50%] size-11 flex justif
         </button>
       </li>
       <li
-        v-if="totalPages - currentPage > 2"
+        v-if="showNext"
         :class="liClass"
         :title="`page ${currentPage + 1}`"
         @click="emit('change', currentPage + 1)"
@@ -61,7 +66,7 @@ const liClass = 'bg-lightbg hover:text-primary rounded-[50%] size-11 flex justif
         <Icon name="fa7-solid:angle-right" />
       </li>
       <li
-        v-if=" totalPages - currentPage > 2"
+        v-if="showEnd"
         :class="liClass"
         :title="`page ${totalPages}`"
         @click="emit('change', totalPages)"

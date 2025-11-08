@@ -23,7 +23,7 @@ defineProps({
     </NuxtLink>
   </div>
 
-  <div class="flex flex-wrap justify-around w-full">
+  <div class="flex flex-wrap justify-center w-full">
     <template v-if="data?.length">
       <NuxtLink
         v-for="item in data"
@@ -32,35 +32,37 @@ defineProps({
         class="flw-item block rounded-sm overflow-hidden"
       >
         <!-- Poster -->
-        <div
-          class="relative w-full pb-[140%] mb-2 transition-all md:hover:opacity-70"
-        >
-          <div class="absolute bottom-0 left-0 z-40 opacity-90">
-            <SoundsInfo :episodes="item.episodes" />
+        <section class="mx-1">
+          <div
+            class="relative w-full pb-[140%] mb-2 transition-all md:hover:opacity-70"
+          >
+            <div class="absolute bottom-0 left-0 z-40 opacity-90">
+              <SoundsInfo :episodes="item.episodes" />
+            </div>
+            <Image
+              class="absolute inset-0 object-cover object-center w-full h-full"
+              :src="item.poster"
+              :alt="item.title"
+            />
           </div>
-          <Image
-            class="absolute inset-0 object-cover object-center w-full h-full"
-            :src="item.poster"
-            :alt="item.title"
-          />
-        </div>
 
-        <!-- Title -->
-        <h1
-          :title="item.title"
-          class="title truncate text-sm md:text-base hover:text-primary px-1"
-        >
-          {{ item.title }}
-        </h1>
+          <!-- Title -->
+          <h1
+            :title="item.title"
+            class="title truncate text-sm md:text-base hover:text-primary px-1"
+          >
+            {{ item.title }}
+          </h1>
 
-        <div
-          v-if="item.type"
-          class="type flex items-center gap-3 text-sm text-neutral-400"
-        >
-          <h4>{{ item.type }}</h4>
-          <div class="h-1 w-1 bg-primary rounded-full" />
-          <h4>{{ item.duration }}</h4>
-        </div>
+          <div
+            v-if="item.type"
+            class="type flex items-center gap-3 text-sm text-neutral-400"
+          >
+            <h4>{{ item.type }}</h4>
+            <div class="h-1 w-1 bg-primary rounded-full" />
+            <h4>{{ item.duration }}</h4>
+          </div>
+        </section>
       </NuxtLink>
     </template>
 

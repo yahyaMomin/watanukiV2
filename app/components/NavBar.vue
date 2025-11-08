@@ -12,8 +12,8 @@ const submitForm = () => {
 </script>
 
 <template>
-  <nav class="bg-lightbg px-2 fixed w-full z-50">
-    <div class="flex justify-between items-center mx-2 md:mx-10 gap-2 md:gap-5 h-16">
+  <nav class="bg-[#212121a8] px-2 fixed w-full z-50">
+    <div class="flex justify-between items-center mx-2 md:mx-10 gap-2 md:gap-5 h-14">
       <div class="left flex items-center justify-center  gap-4">
         <button
           class="menu flex justify-center items-center"

@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     'nuxt-swiper',
     '@vueuse/nuxt',
   ],
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   css: ['~/assets/css/variables.css'],
   runtimeConfig: {
     serverUrl: 'http://localhost:3030/api/v1',

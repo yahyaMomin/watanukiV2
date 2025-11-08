@@ -16,13 +16,8 @@ import config from '~/config/config'
 <style scoped>
 .gradient-text {
   font-weight: 900;
-  background: linear-gradient(90deg,  #d0e6a5,
-    #ffbade,
-    #fc887b,
-    #ccabda,
-    #abccd8,
-    #d8b2ab,
-    #86e3ce);
+  background: linear-gradient(90deg,  var(--primary),
+   #fff);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

@@ -25,17 +25,11 @@ const sidebar = useSidebarStore()
   .active {
   position: fixed;
   backdrop-filter: blur(5px);
-  background-color: #272829b4;
-  z-index: 5000;
+  background-color: #212222b4;
+  z-index: 200;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   inset: 0;
-}
-.bg-active {
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
 }
 .sidebar {
   scrollbar-width: none;

@@ -7,7 +7,7 @@ const slug = computed(() => route.params.slug || null)
 <template>
   <div class="genre">
     <listpage-mapper
-      :path="`genre/${slug}`"
+      :path="`animes/genre/${slug}`"
       :title="`${slug} Animes`"
     />
   </div>

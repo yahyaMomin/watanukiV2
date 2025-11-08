@@ -8,7 +8,7 @@ const sidebar = useSidebarStore()
 <template>
   <div
     :class="[
-      'sidebar transition-all fixed overflow-scroll h-full z-[100] inset-0 w-64 md:w-80 bg-[rgba(255,255,255,.1)]',
+      'sidebar transition-all fixed overflow-scroll h-full z-[210] inset-0 w-64 md:w-80 bg-[rgba(255,255,255,.1)]',
       sidebar.isSideBarOpen ? 'translate-x-0' : 'translate-x-[-100%]',
     ]"
   >

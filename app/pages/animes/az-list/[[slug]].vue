@@ -8,7 +8,7 @@ const slug = computed(() => route.params.slug || null)
   <div class="az-list">
     <AZList :selected="slug" />
     <listpage-mapper
-      :path="`${slug ? `az-list/${slug}` : 'az-list'}`"
+      :path="`animes/${slug ? `az-list/${slug}` : 'az-list'}`"
       :title="`${slug ? `${slug}` : 'All'}
       Animes`"
     />
