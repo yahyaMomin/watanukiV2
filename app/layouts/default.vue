@@ -26,7 +26,7 @@ const sidebar = useSidebarStore()
   position: fixed;
   backdrop-filter: blur(5px);
   background-color: #212222b4;
-  z-index: 200;
+  z-index: 20;
   width: 100%;
   height: 100%;
   inset: 0;

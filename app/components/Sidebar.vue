@@ -1,5 +1,6 @@
 <script setup>
 import { useSidebarStore } from '@/stores/sidebar'
+
 import { sidebarLinks } from '~/config/meta'
 
 const sidebar = useSidebarStore()
@@ -8,17 +9,19 @@ const sidebar = useSidebarStore()
 <template>
   <div
     :class="[
-      'sidebar transition-all fixed overflow-scroll h-full z-[210] inset-0 w-64 md:w-80 bg-[rgba(255,255,255,.1)]',
+      'sidebar transition-all fixed overflow-scroll h-full z-40 inset-0 w-64 md:w-80 bg-[rgba(255,255,255,.1)]',
       sidebar.isSideBarOpen ? 'translate-x-0' : 'translate-x-[-100%]',
     ]"
   >
-    <button
-      class="w-full pt-4 pl-2 flex items-center gap-2 hover:text-primary"
-      @click="sidebar.toggleSidebar"
-    >
-      <Icon name="fa7-solid:angle-left" />
-      <span>close menu</span>
-    </button>
+    <div class="buttons h-10 flex justify-between mx-2 mt-4">
+      <button
+        class="flex bg-black basis-80 hover:text-primary rounded-lg pl-4 items-center gap-2"
+        @click="sidebar.toggleSidebar"
+      >
+        <Icon name="fa7-solid:angle-left" />
+        <span>close menu</span>
+      </button>
+    </div>
 
     <ul class="py-4">
       <li

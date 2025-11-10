@@ -36,7 +36,7 @@ defineProps({
           <div
             class="relative w-full pb-[140%] mb-2 transition-all md:hover:opacity-70"
           >
-            <div class="absolute bottom-0 left-0 z-40 opacity-90">
+            <div class="absolute bottom-0 left-0 z-[8] opacity-90">
               <SoundsInfo :episodes="item.episodes" />
             </div>
             <Image

@@ -81,10 +81,10 @@ useSwiper(containerRef, {
               <NuxtLink
                 :to="`/watch/${item.id}`"
               >
-                <Button class="bg-primary rounded-3xl px-4 py-1 text-black flex justify-center items-center gap-2">
+                <button class="bg-primary rounded-3xl px-4 py-1 text-black flex justify-center items-center gap-2">
                   <Icon name="fa7-solid:circle-play" />
                   <span>Watch Now</span>
-                </Button>
+                </button>
               </NuxtLink>
 
               <NuxtLink
