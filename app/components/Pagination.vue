@@ -24,7 +24,11 @@ const showPrev = computed(() => props.currentPage > 1)
 const showNext = computed(() => props.totalPages - props.currentPage > 1)
 const showEnd = computed(() => props.totalPages - props.currentPage > 1)
 
-const liClass = 'bg-lightbg hover:text-primary rounded-[50%] size-11 flex justify-center items-center cursor-pointer'
+const changePage = (num) => {
+  emit('change', num)
+}
+
+const liClass = 'bg-lightbg text-sm sm:text-base hover:text-primary rounded-[50%] size-8 sm:size-11 flex justify-center items-center cursor-pointer'
 </script>
 
 <template>
@@ -34,7 +38,7 @@ const liClass = 'bg-lightbg hover:text-primary rounded-[50%] size-11 flex justif
         v-if="showFirst"
         :class="liClass"
         title="page 1"
-        @click="emit('change', 1)"
+        @click="changePage(1)"
       >
         <Icon name="fa7-solid:angle-double-left" />
       </li>
@@ -42,7 +46,7 @@ const liClass = 'bg-lightbg hover:text-primary rounded-[50%] size-11 flex justif
         v-if="showPrev"
         :class="liClass"
         :title="`page ${currentPage - 1}`"
-        @click="emit('change', currentPage - 1)"
+        @click="changePage(currentPage - 1)"
       >
         <Icon name="fa7-solid:angle-left" />
       </li>
@@ -51,7 +55,7 @@ const liClass = 'bg-lightbg hover:text-primary rounded-[50%] size-11 flex justif
         :key="p"
         :title="`page ${p}`"
         :class="[{ 'bg-primary text-black': currentPage === p }, liClass]"
-        @click="emit('change', p)"
+        @click="changePage(p)"
       >
         <button class="">
           {{ p }}
@@ -61,7 +65,7 @@ const liClass = 'bg-lightbg hover:text-primary rounded-[50%] size-11 flex justif
         v-if="showNext"
         :class="liClass"
         :title="`page ${currentPage + 1}`"
-        @click="emit('change', currentPage + 1)"
+        @click="changePage(currentPage + 1)"
       >
         <Icon name="fa7-solid:angle-right" />
       </li>
@@ -69,7 +73,7 @@ const liClass = 'bg-lightbg hover:text-primary rounded-[50%] size-11 flex justif
         v-if="showEnd"
         :class="liClass"
         :title="`page ${totalPages}`"
-        @click="emit('change', totalPages)"
+        @click="changePage(totalPages)"
       >
         <Icon name="fa7-solid:angle-double-right" />
       </li>

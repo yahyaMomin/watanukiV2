@@ -3,7 +3,7 @@
     <img
       src="/images/loader.gif"
       alt="loader"
-      class="w-36 h-auto"
+      class=" w-28 md:w-36 h-auto"
     >
   </div>
 </template>

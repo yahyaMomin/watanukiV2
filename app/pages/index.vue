@@ -5,18 +5,40 @@ definePageMeta({
 useHead({
   title: 'watanuki | Watch Free Anime, Online Anime Streaming - watanuki',
   meta: [
-    { name: 'description', content: 'watanuki is a free, no-ads anime site to watch anime online in HD with DUB and SUB. Stream anime from watanuki.shop, hianime, Anix, 9anime, Zoro, Animixplay alternatives.' },
-    { name: 'keywords', content: 'watanuki, watanuki to, watch anime online, free anime streaming, zoro anime, aniwatch, 9anime, anime dub sub hd, hianime' },
+    {
+      name: 'description',
+      content:
+        'watanuki is a free, no-ads anime site to watch anime online in HD with DUB and SUB. Stream anime from watanuki.shop, hianime, Anix, 9anime, Zoro, Animixplay alternatives.',
+    },
+    {
+      name: 'keywords',
+      content:
+        'watanuki, watanuki to, watch anime online, free anime streaming, zoro anime, aniwatch, 9anime, anime dub sub hd, hianime',
+    },
     { name: 'robots', content: 'index, follow' },
     { name: 'author', content: 'watanuki' },
-    { property: 'og:title', content: 'watanuki | Watch Free Anime Online in HD' },
-    { property: 'og:description', content: 'Watch free anime online with DUB & SUB in HD. No ads, fast streaming.' },
+    {
+      property: 'og:title',
+      content: 'watanuki | Watch Free Anime Online in HD',
+    },
+    {
+      property: 'og:description',
+      content:
+        'Watch free anime online with DUB & SUB in HD. No ads, fast streaming.',
+    },
     { property: 'og:type', content: 'website' },
     { property: 'og:url', content: 'https://watanuki.shop' },
     { property: 'og:image', content: 'https://watanuki.shop/og-image.jpg' },
-    { name: 'twitter:card', content: 'watanuki is a free, no-ads anime site to watch anime online in HD with DUB and SUB. Stream anime from watanuki.shop, hianime, Anix, 9anime, Zoro, Animixplay alternatives.' },
+    {
+      name: 'twitter:card',
+      content:
+        'watanuki is a free, no-ads anime site to watch anime online in HD with DUB and SUB. Stream anime from watanuki.shop, hianime, Anix, 9anime, Zoro, Animixplay alternatives.',
+    },
     { name: 'twitter:title', content: 'watanuki | Free Anime Streaming' },
-    { name: 'twitter:description', content: 'Stream anime free online, HD quality, no ads.' },
+    {
+      name: 'twitter:description',
+      content: 'Stream anime free online, HD quality, no ads.',
+    },
     { name: 'twitter:image', content: 'https://watanuki.shop/og-image.jpg' },
   ],
 })
@@ -27,19 +49,6 @@ const navLinks = [
   { name: 'TV Series', path: '/animes/tv' },
   { name: 'Most Popular', path: '/animes/most-popular' },
   { name: 'Top Airing', path: '/animes/top-airing' },
-]
-
-const topSearches = [
-  'One-Punch Man Season 3',
-  'One Piece',
-  'Demon Slayer: Kimetsu no Yaiba Infinity Castle',
-  'One Punch Man',
-  'My Hero Academia Final Season',
-  'Demon Slayer: Kimetsu no Yaiba',
-  'Chainsaw Man the Movie: Reze Arc',
-  'One Punch Man 3: Specials',
-  'Attack on Titan',
-  'My Hero Academia Season 7',
 ]
 
 const showNav = ref(false)
@@ -62,7 +71,7 @@ const inputVal = ref('')
       </nav>
       <nav class="block relative pt-4 sm:hidden">
         <button
-          class="flex justify-center items-center gap-2  pl-3"
+          class="flex justify-center items-center gap-2 pl-3"
           @click="showNav = !showNav"
         >
           <Icon
@@ -89,30 +98,25 @@ const inputVal = ref('')
       </div>
     </header>
     <section class="bg">
-      <form class="search flex justify-center items-center">
+      <form
+        class="search flex justify-center items-center"
+        @submit.prevent="navigateTo(`/search?keyword=${inputVal}`)"
+      >
         <input
           v-model="inputVal"
           type="text"
           placeholder="search for animes..."
           class="text-black border-none outline-none w-full px-2 py-1.5 text-lg rounded-l-md"
         >
-        <button class="bg-primary text-black h-full py-2 px-3 rounded-r-md">
+        <button
+          type="submit"
+          class="bg-primary text-black h-full py-2 px-3 rounded-r-md"
+        >
           <Icon name="fa7-solid:magnifying-glass" />
         </button>
       </form>
-      <!-- <div class="top-searches text-base mt-5">
-        <span class="font-bold">TOP SEARCHES : </span>
-        <span
-          v-for="term in topSearches"
-          :key="term"
-          class="px-1 hover:text-primary cursor-pointer"
-        >
-          <nuxt-link :to="`/search?keyworld=${term}`">
-            {{ term }}
-          </nuxt-link>
-        </span>
-      </div> -->
-      <div class="banner flex items-center justify-center ">
+
+      <div class="banner flex items-center justify-center">
         <NuxtImg
           class="h-auto w-96"
           format="webp"
@@ -121,7 +125,9 @@ const inputVal = ref('')
       </div>
       <div class="explore">
         <NuxtLink to="/home">
-          <button class="bg-primary text-black w-full mt-4 py-2 rounded-md flex justify-center items-center gap-2">
+          <button
+            class="bg-primary text-black w-full mt-4 py-2 rounded-md flex justify-center items-center gap-2"
+          >
             <span>Explore Animes</span>
             <Icon name="fa7-solid:arrow-right" />
           </button>
@@ -135,8 +141,8 @@ const inputVal = ref('')
 .bg {
   /* background-image:linear-gradient(to right, rgb(0, 0, 0) 1%, rgba(0,0,0,0.5) 90%), url("/images/background.jpg"); */
   background-image: url("/images/background.jpg");
-    /* linear-gradient(to right, #000 1%, transparent 90%, #000); */
-    /* background-blend-mode: overlay; or try multiply, soft-light, etc. */
+  /* linear-gradient(to right, #000 1%, transparent 90%, #000); */
+  /* background-blend-mode: overlay; or try multiply, soft-light, etc. */
   background-position: center;
   background-size: cover;
 }

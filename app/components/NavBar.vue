@@ -10,11 +10,13 @@ const submitForm = () => {
   if (inputVal.value.trim() === '') return
   inputRef.value?.blur()
   navigateTo(`/search?keyword=${inputVal.value}`)
+  inputVal.value = ''
+  showSearch.value = false
 }
 </script>
 
 <template>
-  <nav class="bg-lightbg/70 px-2 fixed w-full z-10">
+  <nav class="bg-lightbg/95 px-2 fixed w-full z-10">
     <div class="flex justify-between items-center">
       <div class="flex items-center mx-2 md:mx-4 gap-2 md:gap-5 h-14">
         <button
@@ -42,6 +44,7 @@ const submitForm = () => {
           class="h-full rounded-md px-2 w-full"
         >
         <button
+          v-if="inputVal.length > 0"
           type="submit"
           class="absolute top-1/2 -translate-y-1/2 right-2 text-black"
         >
@@ -69,10 +72,14 @@ const submitForm = () => {
         class="h-full rounded-md px-2 w-full"
       >
       <button
+        v-if="inputVal.length > 0"
         type="submit"
         class="absolute top-1/2 -translate-y-1/2 right-2 text-black"
       >
-        <Icon name="fa7-solid:search" />
+        <Icon
+          name="fa7-solid:search"
+          style="font-size: 20px;"
+        />
       </button>
     </form>
   </nav>
