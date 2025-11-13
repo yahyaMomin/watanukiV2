@@ -6,20 +6,25 @@ const layout = ref('row')
 const id = computed(() => route.params.id)
 const ep = computed(() => route.query.ep)
 
-onMounted(() => {
-  if (!ep.value && Array.isArray(episodes.value) && episodes.value.length > 0) {
-    const firstEp = episodes.value[0].id.split('ep=').pop()
-    updateParams(firstEp)
-  }
-})
-
-const { data, pending, error } = await useFetch(`/api/episodes/${id.value}`, { lazy: true })
+const { data, pending, error } = await useFetch(`/api/episodes/${id.value}`)
 const episodes = computed(() => data.value?.data || [])
 
 const updateParams = (newEp) => {
   router.replace({ query: { ...route.query, ep: newEp } })
 }
 
+onMounted(() => {
+  console.log('mounted run')
+
+  console.log(!ep.value)
+
+  console.log(episodes.value)
+
+  if (!ep.value && episodes.value.length > 0) {
+    const firstEp = episodes.value[0].id.split('ep=').pop()
+    updateParams(firstEp)
+  }
+})
 if (error.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found' })
 }
