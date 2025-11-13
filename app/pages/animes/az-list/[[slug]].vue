@@ -46,12 +46,12 @@ useHead({
 </script>
 
 <template>
-  <div class="az-list">
+  <main>
     <AZList :selected="slug" />
     <listpage-mapper
       :path="`animes/${slug ? `az-list/${slug}` : 'az-list'}`"
       :title="`${slug ? `${slug}` : 'All'}
       Animes`"
     />
-  </div>
+  </main>
 </template>

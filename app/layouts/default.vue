@@ -13,7 +13,7 @@ const sidebar = useSidebarStore()
         @click="sidebar.toggleSidebar()"
       />
       <NavBar />
-      <div class="main-app pt-16">
+      <div class="main-app pt-12">
         <slot />
       </div>
       <Footer />

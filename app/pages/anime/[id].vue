@@ -1,6 +1,12 @@
 <script setup>
+const route = useRoute()
+const id = computed(() => route.params.id || null)
+
+const titleArr = id.value.split('-')
+const title = titleArr.slice(0, titleArr.length - 1).join(' ')
+
 useHead({
-  title: 'watanuki | Watch Free Anime, Online Anime Streaming - watanuki',
+  title: `Anime | ${title}`,
   meta: [
     {
       name: 'description',
@@ -39,8 +45,47 @@ useHead({
     { name: 'twitter:image', content: 'https://watanuki.shop/og-image.jpg' },
   ],
 })
+
+const { data, status, error } = useFetch(() => `/api/anime/${id.value}`, { lazy: true })
+
+if (error.value) throw createError({
+  statusCode: error.value.status,
+  statusMessage: error.value.statusMessage,
+})
+
+const response = computed(() => data.value?.data)
 </script>
 
 <template>
-  <h1> {{ $route.params.id }}</h1>
+  <main>
+    <div v-if="status === 'pending'">
+      <loader />
+    </div>
+    <div
+      v-else
+      class="page-layout"
+    >
+      <section class="detail-card">
+        <detail-card :data="response" />
+      </section>
+      <div class="row grid items-start gap-3 px-2 grid-cols-12">
+        <div class="left col-span-12 xl:col-span-9">
+          <more-seasons
+            v-if="response.moreSeasons.length > 0"
+            :data="response.moreSeasons"
+          />
+          <voice-actors :id="id" />
+          <Recommendation :data="response.recommended" />
+        </div>
+        <div class="right col-span-12 xl:col-span-3">
+          <Related
+            v-if="response.related"
+            :data="response.related"
+          />
+          <MostPopular :data="response.mostPopular" />
+        </div>
+      </div>
+    </div>
+    <section />
+  </main>
 </template>

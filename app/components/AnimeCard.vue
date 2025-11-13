@@ -48,7 +48,10 @@ defineProps({
         </div>
       </div>
 
-      <div class="my-3">
+      <div
+        v-if="path"
+        class="my-3"
+      >
         <NuxtLink
           class="flex hover:text-primary items-center gap-2"
           :to="`/animes/${path}`"

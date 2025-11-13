@@ -46,10 +46,10 @@ useHead({
 </script>
 
 <template>
-  <div class="genre">
+  <main>
     <listpage-mapper
       :path="`animes/genre/${slug}`"
       :title="`${slug} Animes`"
     />
-  </div>
+  </main>
 </template>

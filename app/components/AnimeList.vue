@@ -23,7 +23,7 @@ defineProps({
     </NuxtLink>
   </div>
 
-  <div class="flex flex-wrap justify-center w-full">
+  <div class="flex flex-wrap justify-between w-full">
     <template v-if="data?.length">
       <NuxtLink
         v-for="item in data"
