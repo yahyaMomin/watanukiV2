@@ -23,11 +23,11 @@ const props = defineProps({
             : 'text-white border-none',
         ]"
       >
-        <h1 class="z-20 text-inherit text-center relative line-clamp-2 text-[12px] font-extrabold">
+        <h1 class="z-[9] text-inherit text-center relative line-clamp-2 text-sm font-normal">
           {{ item.alternativeTitle }}
         </h1>
         <div
-          class="absolute opacity-[.3] blur-[2px] z-10 -inset-3 bg-cover bg-center bg-no-repeat"
+          class="absolute opacity-30 blur-sm z-[8] -inset-3 bg-cover bg-center bg-no-repeat"
           :style="{ backgroundImage: `url(${item.poster})` }"
         />
       </div>

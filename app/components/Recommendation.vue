@@ -10,6 +10,7 @@ const props = defineProps({
 <template>
   <AnimeList
     :data="data"
-    title="recommended"
+    title="Recommended For You"
+    class="mt-5"
   />
 </template>

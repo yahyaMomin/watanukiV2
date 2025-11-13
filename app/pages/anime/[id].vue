@@ -5,6 +5,11 @@ const id = computed(() => route.params.id || null)
 const titleArr = id.value.split('-')
 const title = titleArr.slice(0, titleArr.length - 1).join(' ')
 
+const showModal = ref(false)
+
+const toggleModal = () => {
+  showModal.value = !showModal.value
+}
 useHead({
   title: `Anime | ${title}`,
   meta: [
@@ -46,7 +51,7 @@ useHead({
   ],
 })
 
-const { data, status, error } = useFetch(() => `/api/anime/${id.value}`, { lazy: true })
+const { data, status, error } = await useFetch(`/api/anime/${id.value}`, { lazy: true })
 
 if (error.value) throw createError({
   statusCode: error.value.status,
@@ -58,23 +63,26 @@ const response = computed(() => data.value?.data)
 
 <template>
   <main>
-    <div v-if="status === 'pending'">
+    <div
+      v-if="status === 'pending'"
+    >
       <loader />
     </div>
-    <div
+    <section
       v-else
       class="page-layout"
     >
-      <section class="detail-card">
-        <detail-card :data="response" />
-      </section>
+      <detail-card :data="response" />
       <div class="row grid items-start gap-3 px-2 grid-cols-12">
         <div class="left col-span-12 xl:col-span-9">
-          <more-seasons
+          <MoreSeasons
             v-if="response.moreSeasons.length > 0"
             :data="response.moreSeasons"
           />
-          <voice-actors :id="id" />
+          <VoiceActors
+            :id="id"
+            @toggle-modal="toggleModal"
+          />
           <Recommendation :data="response.recommended" />
         </div>
         <div class="right col-span-12 xl:col-span-3">
@@ -85,7 +93,13 @@ const response = computed(() => data.value?.data)
           <MostPopular :data="response.mostPopular" />
         </div>
       </div>
-    </div>
-    <section />
+    </section>
+
+    <!-- dialog -->
+    <Modal
+      v-if="showModal"
+      :id="id"
+      @toggle-modal="toggleModal"
+    />
   </main>
 </template>

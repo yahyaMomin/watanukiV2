@@ -28,12 +28,12 @@ const changePage = (num) => {
   emit('change', num)
 }
 
-const liClass = 'bg-lightbg text-sm sm:text-base hover:text-primary rounded-[50%] size-8 sm:size-11 flex justify-center items-center cursor-pointer'
+const liClass = 'bg-lightbg text-sm sm:text-base hover:text-primary rounded-[50%] size-10 sm:size-11 flex justify-center items-center cursor-pointer'
 </script>
 
 <template>
   <nav>
-    <ul class="flex justify-center items-center gap-2  my-5">
+    <ul class="flex justify-center items-center gap-2 my-5">
       <li
         v-if="showFirst"
         :class="liClass"

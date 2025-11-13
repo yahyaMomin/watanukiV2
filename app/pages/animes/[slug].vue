@@ -58,7 +58,7 @@ useHead({
 
 <template>
   <main>
-    <listpage-mapper
+    <ListpageMapper
       :path="`animes/${pathname}`"
       :title="`${pageTitle} Animes`"
     />

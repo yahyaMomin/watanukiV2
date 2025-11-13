@@ -15,7 +15,7 @@ const API_ENDPOINT = computed(() => {
   const separator = props.path.includes('?') ? '&' : '?'
   return `/api/${props.path}${separator}page=${currentPage.value}`
 })
-const { data, status, error, refresh } = await useFetch(API_ENDPOINT, { lazy: true, watch: [currentPage] })
+const { data, status, error } = await useFetch(API_ENDPOINT, { lazy: true })
 
 if (error.value) throw createError({
   statusCode: error.value.status,
@@ -29,7 +29,7 @@ function handlePageChange(page) {
   router.push({
     query: { ...route.query, page: page },
   })
-  window.scrollTo({ top: 0, behavior: 'smooth' })
+  window.scrollTo({ top: 0 })
 }
 </script>
 

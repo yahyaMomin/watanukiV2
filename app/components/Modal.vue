@@ -3,30 +3,34 @@ const props = defineProps({
   id: { type: String, required: true },
 })
 
+const currentPage = ref(1)
 defineEmits(['toggleModal'])
-const { data, error } = await useFetch(`/api/characters/${props.id}`)
+const { data, status, error } = await useFetch(() => `/api/characters/${props.id}?page=${currentPage.value}`, { lazy: true, watch: [currentPage] })
 
-const characters = computed(() => data.value?.data?.response?.slice(0, 6) || [])
+const characters = computed(() => data.value?.data?.response)
+const pageInfo = computed(() => data.value?.data?.pageInfo)
+
+const handlePageChange = (page) => {
+  currentPage.value = page
+}
 </script>
 
 <template>
+  <div v-if="status === 'pending'">
+    <Loader />
+  </div>
   <main
-    v-if="!error && characters.length"
-    class="mt-5"
+    v-else
+    class="fixed inset-0 w-full bg-black/50 flex items-center justify-center flex-col z-[9] overflow-hidden"
   >
-    <div class="header flex justify-between items-center">
-      <h2 class="text-lg md:ml-5 text-primary">
-        Characters & Voice Actors
-      </h2>
-      <div @click="$emit('toggleModal')">
-        <h6 class="text-sm cursor-pointer hover:text-primary flex md:mr-4 items-center gap-1 text-neutral-400">
-          <span>View more</span>
-          <Icon name="fa7-solid:angle-right" />
-        </h6>
-      </div>
-    </div>
-
-    <div class="grid mt-2 grid-cols-12 gap-2">
+    <button
+      class="bg-white text-black px-2 py-1 rounded-md"
+      @click="$emit('toggleModal')"
+    >
+      close
+      <Icon name="fa7-slid:close" />
+    </button>
+    <div class="grid mt-2 grid-cols-12 gap-2 bg-background p-6 rounded-2xl shadow-lg max-w-screen-lg w-full">
       <div
         v-for="item in characters"
         :key="item.id"
@@ -73,5 +77,10 @@ const characters = computed(() => data.value?.data?.response?.slice(0, 6) || [])
         </div>
       </div>
     </div>
+    <Pagination
+      :current-page="currentPage"
+      :total-pages="pageInfo.totalPages"
+      @change="handlePageChange"
+    />
   </main>
 </template>

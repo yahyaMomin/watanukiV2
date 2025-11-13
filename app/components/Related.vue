@@ -8,10 +8,8 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="related">
-    <AnimeCard
-      :data="data"
-      title="Related"
-    />
-  </div>
+  <AnimeCard
+    :data="data"
+    title="Related Animes"
+  />
 </template>
