@@ -1,75 +1,48 @@
-# Nuxt Minimal Starter
+# Watanuki 
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-## Setup
+**Watanuki** is a modern, sleek anime streaming web application built with **Nuxt** and styled using **Tailwind CSS**. The app is designed to provide anime enthusiasts with a seamless and enjoyable streaming experience.
 
-Make sure to install dependencies:
+---
 
-```bash
-# npm
-npm install
+## Features
 
-# pnpm
-pnpm install
+- 🌟 **Beautiful UI**: Minimalistic and responsive design powered by Tailwind CSS.
+- 🔍 **Search & Discover**: Find your favorite anime with ease.
+- 🎥 **Stream Anime**: High-quality streaming for your favorite shows.
+- 📋 **Watchlist**: Keep track of the anime you want to watch later.
+- 🌙 **Dark Mode**: Enjoy a stunning dark theme for late-night binging.
+- 📱 **Responsive Design**: Optimized for both desktop and mobile devices.
 
-# yarn
-yarn install
+---
 
-# bun
-bun install
-```
+## Demo
 
-## Development Server
+Check out a live demo here: [Watanuki Live Demo](https://watanukiv2.onrender.com)
 
-Start the development server on `http://localhost:3000`:
+---
 
-```bash
-# npm
-npm run dev
+## Tech Stack
 
-# pnpm
-pnpm dev
+- **Frontend**: Vue/Nuxt
+- **Styling**: Tailwind CSS
+- **State Management**: PINIA
+- **API**: Integration with [Anime APIs](https://github.com/yahyaMomin/hianime-API)
 
-# yarn
-yarn dev
+---
 
-# bun
-bun run dev
-```
+## Installation
 
-## Production
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/yahyamomin/watanukiv2.git
 
-Build the application for production:
+2. **Install dependancy**:
+    ```bash
+    npm install
 
-```bash
-# npm
-npm run build
+3. **start the project**
+    ```bash
+    npm run dev
 
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## The app will be listening on port 3000
