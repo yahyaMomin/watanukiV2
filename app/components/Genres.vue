@@ -1,4 +1,5 @@
 <script setup>
+import config from '~/config/config'
 import { genres } from '~/config/meta'
 
 defineOptions({
@@ -26,7 +27,7 @@ const colors = [
       :style="{ color: colors[index % colors.length] }"
     >
       <NuxtLink
-        :to="`/animes/genre/${genre}`"
+        :to="config.siteRoutes.genre + genre"
         @click="emit('toggleSidebar')"
       >
         {{ genre }}

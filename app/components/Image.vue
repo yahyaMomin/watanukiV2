@@ -6,5 +6,6 @@
     format="webp"
     densities="x1 x2"
     placeholder
+    loading="lazy"
   />
 </template>

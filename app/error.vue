@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { NuxtError } from '#app'
-import Errorpage from './components/Errorpage.vue'
+import type { NuxtError } from '#app';
+import Errorpage from './components/Errorpage.vue';
 
-const props = defineProps({
+defineProps({
   error: Object as () => NuxtError,
-})
+});
 </script>
 
 <template>

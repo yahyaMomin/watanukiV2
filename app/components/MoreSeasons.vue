@@ -1,10 +1,10 @@
 <script setup>
-const props = defineProps({
+defineProps({
   data: {
     type: Array,
     required: true,
   },
-})
+});
 </script>
 
 <template>
@@ -23,7 +23,9 @@ const props = defineProps({
             : 'text-white border-none',
         ]"
       >
-        <h1 class="z-[9] text-inherit text-center relative line-clamp-2 text-sm font-normal">
+        <h1
+          class="z-[9] text-inherit text-center relative line-clamp-2 text-sm font-normal"
+        >
           {{ item.alternativeTitle }}
         </h1>
         <div

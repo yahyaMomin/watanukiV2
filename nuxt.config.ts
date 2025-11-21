@@ -17,9 +17,7 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2025-07-15',
   eslint: {
-    config: {
-      stylistic: true,
-    },
+    config: {},
   },
   icon: {
     mode: 'css',
@@ -29,4 +27,4 @@ export default defineNuxtConfig({
     format: ['webp'],
     domains: ['https://cdn.noitatnemucod.net', 'https://cdn.myanimelist.net'],
   },
-})
+});

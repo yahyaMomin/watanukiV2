@@ -1,4 +1,6 @@
 <script setup>
+import config from '~/config/config'
+
 const props = defineProps({
   spotlight: Object,
 })
@@ -79,7 +81,7 @@ useSwiper(containerRef, {
 
             <div class="z-50 text-sm md:text-base mt-5 flex gap-2">
               <NuxtLink
-                :to="`/watch/${item.id}`"
+                :to="config.siteRoutes.watch + item.id"
               >
                 <button class="bg-primary rounded-3xl px-4 py-1 text-black flex justify-center items-center gap-2">
                   <Icon name="fa7-solid:circle-play" />
@@ -88,7 +90,7 @@ useSwiper(containerRef, {
               </NuxtLink>
 
               <NuxtLink
-                :to="`/anime/${item.id}`"
+                :to="config.siteRoutes.detail + item.id"
               >
                 <button
                   class="bg-btnbg rounded-3xl px-4 py-1 flex justify-center items-center gap-2"

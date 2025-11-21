@@ -1,9 +1,11 @@
 <script setup>
+import config from '~/config/config';
+
 defineProps({
   title: String,
   data: Array,
   path: String,
-})
+});
 </script>
 
 <template>
@@ -18,16 +20,19 @@ defineProps({
         :key="index"
         class="flex pb-3 items-center gap-4"
       >
-        <NuxtLink :to="`/anime/${item.id}`">
-          <div class="rounded-md flex-shrink-0 relative overflow-hidden w-16 pb-[90px]">
+        <NuxtLink :to="config.siteRoutes.detail + item.id">
+          <div
+            class="rounded-md flex-shrink-0 relative overflow-hidden w-16 pb-[90px]"
+          >
             <Image
               class="h-full absolute w-full object-cover object-center"
               :src="item.poster"
               :alt="item.title"
-            /></div>
+            />
+          </div>
         </NuxtLink>
         <div class="text">
-          <NuxtLink :to="`/anime/${item.id}`">
+          <NuxtLink :to="config.siteRoutes.detail + item.id">
             <h2 class="title hover:text-primary mb-2 font-bold">
               {{ item.title }}
             </h2>
@@ -35,10 +40,7 @@ defineProps({
 
           <div class="item">
             <SoundsInfo :episodes="item.episodes" />
-            <div
-              v-if="item.type"
-              class="item"
-            >
+            <div v-if="item.type" class="item">
               <span class="block mx-1 size-1 bg-primary rounded-full" />
               <h2 class="text-sm text-[#ccc]">
                 {{ item.type }}
@@ -48,19 +50,13 @@ defineProps({
         </div>
       </div>
 
-      <div
-        v-if="path"
-        class="my-3"
-      >
+      <div v-if="path" class="my-3">
         <NuxtLink
           class="flex hover:text-primary items-center gap-2"
-          :to="`/animes/${path}`"
+          :to="config.siteRoutes.discover + path"
         >
           <span>View More</span>
-          <Icon
-            name="fa7-solid:angle-right"
-            class="text-xl"
-          />
+          <Icon name="fa7-solid:angle-right" class="text-xl" />
         </NuxtLink>
       </div>
     </div>

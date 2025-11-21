@@ -1,18 +1,21 @@
 <script setup>
 const props = defineProps({
   id: { type: String, required: true },
-})
+});
 
-const currentPage = ref(1)
-defineEmits(['toggleModal'])
-const { data, status, error } = await useFetch(() => `/api/characters/${props.id}?page=${currentPage.value}`, { lazy: true, watch: [currentPage] })
+const currentPage = ref(1);
+defineEmits(['toggleModal']);
+const { data, status } = await useFetch(
+  () => `/api/characters/${props.id}?page=${currentPage.value}`,
+  { lazy: true, watch: [currentPage] }
+);
 
-const characters = computed(() => data.value?.data?.response)
-const pageInfo = computed(() => data.value?.data?.pageInfo)
+const characters = computed(() => data.value?.data?.response);
+const pageInfo = computed(() => data.value?.data?.pageInfo);
 
 const handlePageChange = (page) => {
-  currentPage.value = page
-}
+  currentPage.value = page;
+};
 </script>
 
 <template>
@@ -30,7 +33,9 @@ const handlePageChange = (page) => {
       close
       <Icon name="fa7-slid:close" />
     </button>
-    <div class="grid mt-2 grid-cols-12 gap-2 bg-background p-6 rounded-2xl shadow-lg max-w-screen-lg w-full">
+    <div
+      class="grid mt-2 grid-cols-12 gap-2 bg-background p-6 rounded-2xl shadow-lg max-w-screen-lg w-full"
+    >
       <div
         v-for="item in characters"
         :key="item.id"
@@ -43,7 +48,8 @@ const handlePageChange = (page) => {
                 class="h-full w-full object-cover"
                 :src="item.imageUrl"
                 :alt="item.name"
-              /></div>
+              />
+            </div>
           </NuxtLink>
 
           <div class="flex flex-col">
@@ -72,7 +78,8 @@ const handlePageChange = (page) => {
                 class="h-full w-full object-cover"
                 :src="item.voiceActors[0].imageUrl"
                 :alt="item.voiceActors[0].name"
-              /></div>
+              />
+            </div>
           </NuxtLink>
         </div>
       </div>

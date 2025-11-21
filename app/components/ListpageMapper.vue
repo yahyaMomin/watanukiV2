@@ -1,6 +1,6 @@
 <script setup>
 const props = defineProps({
-  path: String,
+  apiPath: String,
   title: String,
 })
 
@@ -12,8 +12,8 @@ const currentPage = computed(() => {
 })
 
 const API_ENDPOINT = computed(() => {
-  const separator = props.path.includes('?') ? '&' : '?'
-  return `/api/${props.path}${separator}page=${currentPage.value}`
+  const separator = props.apiPath.includes('?') ? '&' : '?'
+  return `/api/${props.apiPath}${separator}page=${currentPage.value}`
 })
 const { data, status, error } = await useFetch(API_ENDPOINT, { lazy: true })
 
@@ -24,6 +24,8 @@ if (error.value) throw createError({
 
 const response = computed(() => data.value?.data?.response ?? [])
 const pageInfo = computed(() => data.value?.data?.pageInfo ?? {})
+
+const totalResults = computed(() => pageInfo.value?.totalPages > 1 ? pageInfo.value?.totalPages * 36 : response.value?.length)
 
 function handlePageChange(page) {
   router.push({
@@ -42,6 +44,7 @@ function handlePageChange(page) {
       <AnimeList
         :data="response"
         :title="title"
+        :total-results="totalResults"
       />
     </div>
     <div

@@ -1,4 +1,6 @@
 <script setup>
+import config from '~/config/config'
+
 const selectedTab = ref('today')
 const tabs = [{ name: 'today' }, { name: 'week' }, { name: 'month' }]
 
@@ -50,7 +52,7 @@ defineProps({
         />
       </div>
       <div class="text">
-        <NuxtLink :to="`/anime/${item.id}`">
+        <NuxtLink :to="config.siteRoutes.detail + item.id">
           <h2 class="title hover:text-primary mb-2 font-bold">
             {{ item.title }}
           </h2>

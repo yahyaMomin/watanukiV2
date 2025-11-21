@@ -1,10 +1,11 @@
 <script setup>
 const route = useRoute()
 
-const slug = computed(() => route.params.slug || null)
+const id = computed(() => route.params.id)
 
+const title = computed(() => id.value.replace('-', ' '))
 useHead({
-  title: `Discover ${slug.value} Animes`,
+  title: `Discover ${title.value} Anime`,
   meta: [
     {
       name: 'description',
@@ -46,10 +47,8 @@ useHead({
 </script>
 
 <template>
-  <main>
-    <ListpageMapper
-      :path="`animes/genre/${slug}`"
-      :title="`${slug} Animes`"
-    />
-  </main>
+  <ListpageMapper
+    :title="title"
+    :path="`animes/producer/${id}`"
+  />
 </template>

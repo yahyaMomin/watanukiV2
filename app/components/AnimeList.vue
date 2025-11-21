@@ -1,35 +1,51 @@
 <script setup>
+import config from '~/config/config'
+
 defineProps({
   title: String,
   path: String,
   data: Array,
+  totalResults: Number,
 })
 </script>
 
 <template>
   <section>
     <div
-      class="flex heading justify-between items-center"
+      class="flex mt-5 justify-between items-center mx-2"
     >
-      <h3 v-if="title">
+      <h1
+        v-if="title"
+        class="my-2 heading"
+      >
         {{ title }}
-      </h3>
+      </h1>
       <NuxtLink
         v-if="path"
-        :to="`/animes/${path}`"
+        :to="config.siteRoutes.discover + path"
         class="flex items-center gap-1 text-sm text-neutral-400 hover:text-primary mr-4"
       >
         <span>View more</span>
         <Icon name="fa7-solid:angle-right" />
       </NuxtLink>
+      <h5
+        v-else
+        class="text-lg"
+      >
+        {{ totalResults }} Results Found
+      </h5>
     </div>
     <div class="flex flex-wrap justify-between w-full">
       <template v-if="data?.length">
         <NuxtLink
           v-for="item in data"
           :key="item.id"
-          :to="`/anime/${item.id}`"
-          class="flw-item block rounded-sm overflow-hidden"
+          :to="config.siteRoutes.detail + item.id"
+          class="
+          flw-item
+          block
+          rounded-sm
+          overflow-hidden"
         >
           <!-- Poster -->
           <section class="mx-1">

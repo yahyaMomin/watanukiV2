@@ -1,10 +1,21 @@
 <script setup>
+import config from '~/config/config'
+import { headers } from '~/config/headers'
+
 const route = useRoute()
 const router = useRouter()
 const layout = ref('row')
 
 const id = computed(() => route.params.id)
 const ep = computed(() => route.query.ep)
+
+const titleArr = computed(() => id.value.split('-'))
+const title = computed(() => titleArr.value.slice(0, titleArr.value.length - 1).join(' '))
+
+useHead({
+  ...headers,
+  title: `Watch | ${title.value}`,
+})
 
 const { data, pending, error } = await useFetch(`/api/episodes/${id.value}`)
 const episodes = computed(() => data.value?.data || [])
@@ -14,12 +25,6 @@ const updateParams = (newEp) => {
 }
 
 onMounted(() => {
-  console.log('mounted run')
-
-  console.log(!ep.value)
-
-  console.log(episodes.value)
-
   if (!ep.value && episodes.value.length > 0) {
     const firstEp = episodes.value[0].id.split('ep=').pop()
     updateParams(firstEp)
@@ -66,11 +71,11 @@ const hasPrevEp = computed(() => {
   >
     <div class="flex flex-col gap-2">
       <div class="path flex mb-2 mx-2 items-center gap-2 text-base">
-        <NuxtLink to="/home">
+        <NuxtLink :to="config.siteRoutes.home">
           <h4 class="hover:text-primary">home</h4>
         </NuxtLink>
         <span class="h-1 w-1 rounded-full bg-primary" />
-        <NuxtLink :to="`/anime/${id}`">
+        <NuxtLink :to="config.siteRoutes.detail + id">
           <h4 class="hover:text-primary">{{ id.replaceAll("-", " ") }}</h4>
         </NuxtLink>
         <span class="h-1 w-1 rounded-full bg-primary" />
@@ -131,3 +136,9 @@ const hasPrevEp = computed(() => {
     </div>
   </div>
 </template>
+
+<style>
+.episodes {
+  scrollbar-width: none;
+}
+</style>

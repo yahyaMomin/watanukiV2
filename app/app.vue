@@ -1,7 +1,3 @@
-<script setup>
-
-</script>
-
 <template>
   <NuxtLayout>
     <NuxtPage />
@@ -29,7 +25,7 @@ input {
   align-items: center;
   gap: 3px;
 }
-.heading{
+.heading {
   color: var(--primary);
   font-weight: 800;
   letter-spacing: 2px;

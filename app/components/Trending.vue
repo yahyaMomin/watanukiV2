@@ -1,4 +1,6 @@
 <script setup>
+import config from '~/config/config'
+
 const props = defineProps({
   trending: Array,
 })
@@ -36,7 +38,7 @@ useSwiper(containerRef, {
         >
           <div class="item flex-col px-1">
             <NuxtLink
-              :to="`/anime/${item.id}`"
+              :to="config.siteRoutes.detail + item.id"
               class="w-full h-0 pb-[150%] bg-lightbg relative overflow-hidden"
             >
               <Image

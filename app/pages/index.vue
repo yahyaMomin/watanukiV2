@@ -1,58 +1,22 @@
 <script setup lang="ts">
+import config from '~/config/config';
+import { headers } from '~/config/headers';
+
 definePageMeta({
   layout: 'root',
-})
-useHead({
-  title: 'watanuki | Watch Free Anime, Online Anime Streaming - watanuki',
-  meta: [
-    {
-      name: 'description',
-      content:
-        'watanuki is a free, no-ads anime site to watch anime online in HD with DUB and SUB. Stream anime from watanuki.shop, hianime, Anix, 9anime, Zoro, Animixplay alternatives.',
-    },
-    {
-      name: 'keywords',
-      content:
-        'watanuki, watanuki to, watch anime online, free anime streaming, zoro anime, aniwatch, 9anime, anime dub sub hd, hianime',
-    },
-    { name: 'robots', content: 'index, follow' },
-    { name: 'author', content: 'watanuki' },
-    {
-      property: 'og:title',
-      content: 'watanuki | Watch Free Anime Online in HD',
-    },
-    {
-      property: 'og:description',
-      content:
-        'Watch free anime online with DUB & SUB in HD. No ads, fast streaming.',
-    },
-    { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: 'https://watanuki.shop' },
-    { property: 'og:image', content: 'https://watanuki.shop/og-image.jpg' },
-    {
-      name: 'twitter:card',
-      content:
-        'watanuki is a free, no-ads anime site to watch anime online in HD with DUB and SUB. Stream anime from watanuki.shop, hianime, Anix, 9anime, Zoro, Animixplay alternatives.',
-    },
-    { name: 'twitter:title', content: 'watanuki | Free Anime Streaming' },
-    {
-      name: 'twitter:description',
-      content: 'Stream anime free online, HD quality, no ads.',
-    },
-    { name: 'twitter:image', content: 'https://watanuki.shop/og-image.jpg' },
-  ],
-})
+});
+useHead(headers);
 
 const navLinks = [
-  { name: 'Home', path: '/home' },
-  { name: 'Movies', path: '/animes/movie' },
-  { name: 'TV Series', path: '/animes/tv' },
-  { name: 'Most Popular', path: '/animes/most-popular' },
-  { name: 'Top Airing', path: '/animes/top-airing' },
-]
+  { name: 'Home', path: config.siteRoutes.home },
+  { name: 'Movies', path: config.siteRoutes.discover + 'movie' },
+  { name: 'TV Series', path: config.siteRoutes.discover + 'tv' },
+  { name: 'Most Popular', path: config.siteRoutes.discover + 'most-popular' },
+  { name: 'Top Airing', path: config.siteRoutes.discover + 'top-airing' },
+];
 
-const showNav = ref(false)
-const inputVal = ref('')
+const showNav = ref(false);
+const inputVal = ref('');
 </script>
 
 <template>
@@ -74,10 +38,7 @@ const inputVal = ref('')
           class="flex justify-center items-center gap-2 pl-3"
           @click="showNav = !showNav"
         >
-          <Icon
-            name="fa7-solid:align-justify"
-            size="25"
-          />
+          <Icon name="fa7-solid:align-justify" size="25" />
           Menu
         </button>
         <ul
@@ -117,18 +78,14 @@ const inputVal = ref('')
       </form>
 
       <div class="banner flex items-center justify-center">
-        <NuxtImg
-          class="h-auto w-96"
-          format="webp"
-          src="/images/banner.png"
-        />
+        <NuxtImg class="h-auto w-96" format="webp" src="/images/banner.png" />
       </div>
       <div class="explore">
-        <NuxtLink to="/home">
+        <NuxtLink :to="config.siteRoutes.home">
           <button
             class="bg-primary text-black w-full mt-4 py-2 rounded-md flex justify-center items-center gap-2"
           >
-            <span>Explore Animes</span>
+            <span>Explore Anime</span>
             <Icon name="fa7-solid:arrow-right" />
           </button>
         </NuxtLink>
@@ -140,7 +97,7 @@ const inputVal = ref('')
 <style scoped>
 .bg {
   /* background-image:linear-gradient(to right, rgb(0, 0, 0) 1%, rgba(0,0,0,0.5) 90%), url("/images/background.jpg"); */
-  background-image: url("/images/background.jpg");
+  background-image: url('/images/background.jpg');
   /* linear-gradient(to right, #000 1%, transparent 90%, #000); */
   /* background-blend-mode: overlay; or try multiply, soft-light, etc. */
   background-position: center;

@@ -1,9 +1,11 @@
 <script setup>
-const props = defineProps({
-  data: { type: Object, required: true },
-})
+import config from '~/config/config';
 
-const showFull = ref(false)
+defineProps({
+  data: { type: Object, required: true },
+});
+
+const showFull = ref(false);
 const colors = [
   '#d0e6a5',
   '#ffbade',
@@ -12,12 +14,14 @@ const colors = [
   '#abccd8',
   '#d8b2ab',
   '#86e3ce',
-]
+];
 </script>
 
 <template>
   <div class="banner min-h-[700px] relative w-full bg-[#262525] pt-10">
-    <div class="backdrop-img bg-backGround w-full h-full absolute top-0 left-0 overflow-hidden opacity-[.1]">
+    <div
+      class="backdrop-img bg-backGround w-full h-full absolute top-0 left-0 overflow-hidden opacity-[.1]"
+    >
       <Image
         :src="data.poster"
         :alt="data.title"
@@ -26,7 +30,9 @@ const colors = [
     </div>
     <div class="opacity-overlay" />
 
-    <div class="content max-w-screen-xl w-full mx-auto flex flex-col items-start md:flex-row gap-2 mb-2 relative px-2">
+    <div
+      class="content max-w-screen-xl w-full mx-auto flex flex-col items-start md:flex-row gap-2 mb-2 relative px-2"
+    >
       <div class="left w-full md:w-96 flex justify-center">
         <div
           class="posterImg px-5 md:w-full cursor-pointer"
@@ -42,13 +48,13 @@ const colors = [
 
       <div class="right mt-3 w-full flex flex-col gap-2">
         <div class="path hidden md:flex items-center gap-2 text-base">
-          <NuxtLink to="/home"><h4>home</h4></NuxtLink>
+          <NuxtLink :to="config.siteRoutes.home"><h4>home</h4></NuxtLink>
           <span class="h-1 w-1 rounded-full bg-primary" />
-          <NuxtLink :to="`/animes/${data.type.toLowerCase()}`">
+          <NuxtLink :to="config.siteRoutes.discover + data.type.toLowerCase()">
             <h4 class="hover:text-primary">{{ data.type }}</h4>
           </NuxtLink>
           <span class="h-1 w-1 rounded-full bg-primary" />
-          <h4 class="gray">
+          <h4 class="gray line-clamp-1">
             {{ data.title }}
           </h4>
         </div>
@@ -66,9 +72,13 @@ const colors = [
         <div class="sounds flex items-center gap-2 my-2">
           <SoundsInfo :episodes="{ rating: data.rating, ...data.episodes }" />
           <span class="h-1 w-1 rounded-full bg-primary" />
-          <span class="type text-[#ccc] text-sm font-bold">{{ data.type }}</span>
+          <span class="type text-[#ccc] text-sm font-bold">{{
+            data.type
+          }}</span>
           <span class="h-1 w-1 rounded-full bg-primary" />
-          <span class="duration text-[#ccc] text-sm font-bold">{{ data.duration }}</span>
+          <span class="duration text-[#ccc] text-sm font-bold">{{
+            data.duration
+          }}</span>
         </div>
 
         <div class="text-primary flex items-center gap-1 text-lg">
@@ -77,10 +87,7 @@ const colors = [
           <p>{{ data.MAL_score }}</p>
         </div>
 
-        <div
-          v-if="data.id"
-          class="watch-btn my-4"
-        >
+        <div v-if="data.id" class="watch-btn my-4">
           <NuxtLink :to="`/watch/${data.id}`">
             <button
               class="flex justify-center items-center gap-2 py-1 rounded-3xl text-lg text-black bg-primary w-1/2"
@@ -95,7 +102,7 @@ const colors = [
           <NuxtLink
             v-for="(genre, index) in data.genres"
             :key="genre"
-            :to="`/animes/genre/${genre.toLowerCase()}`"
+            :to="config.siteRoutes.genre + genre.toLowerCase()"
           >
             <p
               :style="{ background: colors[index % colors.length] }"
@@ -106,10 +113,7 @@ const colors = [
           </NuxtLink>
         </div>
 
-        <div
-          v-if="data.synopsis"
-          class="overview"
-        >
+        <div v-if="data.synopsis" class="overview">
           <p
             :class="[
               showFull ? 'line-clamp-none' : 'line-clamp-3',
@@ -130,16 +134,12 @@ const colors = [
 
         <div class="infor flex-col sm:flex-row flex gap-5">
           <div class="flex gap-1 status">
-            <p class="font-extrabold">
-              status :
-            </p>
+            <p class="font-extrabold">status :</p>
             <span class="text-lighttext">{{ data.status }}</span>
           </div>
 
           <div class="flex gap-1 aired">
-            <p class="font-extrabold">
-              Aired :
-            </p>
+            <p class="font-extrabold">Aired :</p>
             <div class="text-lighttext flex items-center gap-2">
               <span>{{ data.aired.from }}</span>
               <template v-if="data.aired.to">
@@ -156,7 +156,10 @@ const colors = [
           <div class="studio">
             <span>Studio : </span>
             <NuxtLink
-              :to="`/producer/${data.studios.toLowerCase().replace(' ', '-')}`"
+              :to="
+                config.siteRoutes.producer +
+                data.studios.toLowerCase().replace(' ', '-')
+              "
             >
               <span class="text-primary">{{ data.studios }}</span>
             </NuxtLink>
@@ -164,20 +167,13 @@ const colors = [
           <div class="lightBorder" />
         </template>
 
-        <div
-          v-if="data.producers.length > 0"
-          class="studio"
-        >
-          <h4 class="text-center mb-2">
-            Producers
-          </h4>
-          <ul
-            class="flex flex-wrap gap-2"
-          >
+        <div v-if="data.producers.length > 0" class="studio">
+          <h4 class="text-center mb-2">Producers</h4>
+          <ul class="flex flex-wrap gap-2">
             <NuxtLink
               v-for="(producer, index) in data.producers"
               :key="producer"
-              :to="`/producer/${producer}`"
+              :to="config.siteRoutes.producer + producer"
               class="hover:opacity-[0.7]"
             >
               <li :style="{ color: colors[index % colors.length] }">
