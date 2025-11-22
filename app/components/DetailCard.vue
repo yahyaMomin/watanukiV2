@@ -153,16 +153,13 @@ const colors = [
         <div class="lightBorder" />
 
         <template v-if="data.studios">
-          <div class="studio">
+          <div class="studio flex gap-2">
             <span>Studio : </span>
-            <NuxtLink
-              :to="
-                config.siteRoutes.producer +
-                data.studios.toLowerCase().replace(' ', '-')
-              "
-            >
-              <span class="text-primary">{{ data.studios }}</span>
-            </NuxtLink>
+            <div v-for="studio in data.studios" :key="studio" class="stdios">
+              <NuxtLink :to="config.siteRoutes.producer + studio">
+                <span class="text-primary">{{ studio }}</span>
+              </NuxtLink>
+            </div>
           </div>
           <div class="lightBorder" />
         </template>

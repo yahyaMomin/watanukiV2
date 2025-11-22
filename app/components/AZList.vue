@@ -12,7 +12,7 @@ const props = defineProps({
 });
 
 const isActive = computed(() => {
-  const sel = props.selected === null ? 'all' : props.selected;
+  const sel = props.selected === null ? '' : props.selected;
   return sel;
 });
 </script>
@@ -28,12 +28,8 @@ const isActive = computed(() => {
           'bg-primary text-black': isActive === w,
         }"
       >
-        {{ w }}
+        {{ w !== '' ? w : 'all' }}
       </button>
     </NuxtLink>
   </div>
 </template>
-
-<style scoped>
-/* Tailwind handles most of the styling */
-</style>

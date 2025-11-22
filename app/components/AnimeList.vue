@@ -1,23 +1,18 @@
 <script setup>
-import config from '~/config/config'
+import config from '~/config/config';
 
 defineProps({
   title: String,
   path: String,
   data: Array,
   totalResults: Number,
-})
+});
 </script>
 
 <template>
   <section>
-    <div
-      class="flex mt-5 justify-between items-center mx-2"
-    >
-      <h1
-        v-if="title"
-        class="my-2 heading"
-      >
+    <div class="flex mt-5 justify-between items-center">
+      <h1 v-if="title" class="my-2 heading">
         {{ title }}
       </h1>
       <NuxtLink
@@ -28,10 +23,7 @@ defineProps({
         <span>View more</span>
         <Icon name="fa7-solid:angle-right" />
       </NuxtLink>
-      <h5
-        v-else
-        class="text-lg"
-      >
+      <h5 v-else class="text-sm md:text-lg">
         {{ totalResults }} Results Found
       </h5>
     </div>
@@ -41,11 +33,7 @@ defineProps({
           v-for="item in data"
           :key="item.id"
           :to="config.siteRoutes.detail + item.id"
-          class="
-          flw-item
-          block
-          rounded-sm
-          overflow-hidden"
+          class="flw-item block rounded-sm overflow-hidden"
         >
           <!-- Poster -->
           <section class="mx-1">
@@ -82,10 +70,7 @@ defineProps({
         </NuxtLink>
       </template>
 
-      <div
-        v-else
-        class="text-neutral-400 text-center py-10 w-full"
-      >
+      <div v-else class="text-neutral-400 text-center py-10 w-full">
         No results found.
       </div>
     </div>

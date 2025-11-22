@@ -1,14 +1,13 @@
 <script setup>
-import { headers } from '~/config/headers'
+import { headers } from '~/config/headers';
 
-const route = useRoute()
-
-const slug = computed(() => route.params.slug || null)
+const route = useRoute();
+const slug = computed(() => route.params.slug || null);
 
 useHead({
   ...headers,
   title: `Discover ${slug.value} Anime`,
-})
+});
 </script>
 
 <template>

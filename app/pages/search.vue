@@ -1,13 +1,13 @@
 <script setup>
-import { headers } from '~/config/headers'
+import { headers } from '~/config/headers';
 
-const route = useRoute()
-const keyword = computed(() => route.query.keyword)
+const route = useRoute();
+const keyword = computed(() => route.query.keyword);
 
 useHead({
   ...headers,
   title: `search result of ${keyword.value} `,
-})
+});
 </script>
 
 <template>
@@ -51,7 +51,7 @@ useHead({
       </select>
     </div> -->
     <ListpageMapper
-      :path="`search?keyword=${keyword}`"
+      :api-path="`search?keyword=${keyword}`"
       :title="`Search Result Of '${keyword}'`"
     />
   </main>
